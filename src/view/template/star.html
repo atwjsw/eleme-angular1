@@ -1,0 +1,4 @@
+<div class="star {{starType}}">
+ <!--  <span class="star-item" ng-repeat="(itemClass, index) in itemClasses" ng-class="itemClass" :key="index"></span> -->
+   <span class="star-item {{itemClass}}" ng-repeat="itemClass in itemClasses track by $index"></span>
+</div>

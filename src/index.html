@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="elemeApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="static/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <title>eleme using Angular</title>
+</head>
+
+<body>  
+  <!-- <v-header :seller="seller"></v-header> -->
+  <div class="main-wrapper" ng-controller='mainCtrl'>
+    <app-header seller="seller"></app-header>
+     	
+    <div class="tab border-1px">
+      <div class="tab-item">
+        <a ui-sref="goods">商品</a>
+      </div>
+      <div class="tab-item">
+        <a ui-sref="ratings">评论</a>
+      </div>
+      <div class="tab-item">
+        <a ui-sref="seller">商家</a>
+      </div>
+    </div>
+    <div ui-view></div>    
+    </div>
+    <!-- <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive> -->
+ 
+  <!-- <script type="text/javascript">
+		document.getElementsByTagName('html')[0].style.fontSize = window.screen.width / 10 +'px';
+	</script> -->
+  <script src="vendor/angular/angular.min.js" charset="utf-8"></script>
+  <script src="vendor/angular-ui-router/release/angular-ui-router.min.js" charset="utf-8"></script>
+  <script src="static/better-scroll/build/bscroll.min.js" charset="utf-8"></script>
+  <!-- <script src="vendor/angular-cookies/angular-cookies.min.js" charset="utf-8"></script>
+	<script src="vendor/angular-validation/dist/angular-validation.min.js" charset="utf-8"></script>
+	<script src="vendor/angular-animate/angular-animate.min.js" charset="utf-8"></script> -->
+  <script src="js/index.js" charset="utf-8"></script>
+</body>
+
+</html>

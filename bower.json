@@ -1,0 +1,19 @@
+{
+  "name": "eleme-angular1",
+  "description": "eleme webapp powered using angular 1",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-ui-router": "^0.4.2",
+    "angular-scroll": "^1.0.0"
+  }
+}
