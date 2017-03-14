@@ -1,0 +1,12 @@
+<div class="cartcontrol">
+  <!-- <transition name="move"> -->
+    <!-- <span class="cart-decrease icon-remove_circle_outline" ng-show="food.count>0" @click.stop.prevent="decreaseCart"> -->
+    <span class="cart-decrease icon-remove_circle_outline" ng-if="food.count>0" ng-click="decreaseCart($event)">
+    </span>
+  <!-- </transition> -->
+  <span class="cart-count" ng-show="food.count>0">{{food.count}}</span>
+  <!-- <span class="cart-increase icon-add_circle" @click.stop.prevent="addCart"> -->
+  <span class="cart-increase icon-add_circle" ng-click="addCart($event)">
+    </span>
+</div>
+

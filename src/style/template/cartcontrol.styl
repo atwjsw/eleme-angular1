@@ -1,0 +1,32 @@
+.cartcontrol
+    font-size: 0    
+    color: rgb(0, 160, 220)
+    .cart-decrease, .cart-increase        
+        display: inline-block
+        padding: 6px
+        line-height: 24px
+        font-size: 24px
+        position: relative
+        &.ng-enter
+            transition: all .4s linear
+            transform: translate3d(36px,0,0) rotate(360deg)             
+            opacity: 0
+        &.ng-enter-active            
+            transform: translate3d(0,0,0) rotate(0)      
+            opacity: 1
+        &.ng-leave
+            transition: all .4s linear
+            transform: translate3d(0,0,0) rotate(0)      
+            opacity: 1
+        &.ng-leave-active
+            transform: translate3d(36px,0,0) rotate(360deg)             
+            opacity: 0          
+    .cart-count
+        display: inline-block        
+        vertical-align: top       
+        width: 12px
+        padding-top: 6px
+        line-height: 24px
+        text-align: center             
+        font-size: 10px               
+        color: rgb(147, 153, 159)

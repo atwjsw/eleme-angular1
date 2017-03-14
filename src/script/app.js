@@ -2,7 +2,7 @@
 
 // var BScroll = require('better-scroll');
 
-angular.module('elemeApp', ['ui.router']);
+angular.module('elemeApp', ['ui.router', 'ngAnimate']);
 
 angular.module('elemeApp').controller('goodsCtrl', ['$scope', function($scope) {
 

@@ -1,0 +1,54 @@
+<div>
+  <div class="shopcart">
+    <div class="content" ng-click="toggleList()">
+      <div class="content-left">
+        <div class="logo-wrapper">
+          <i class="icon-shopping_cart" ng-class="{highlight: totalCount>0}"></i>
+          <span class="num" ng-show="totalCount>0">{{totalCount}}</span>
+        </div>
+        <span class="price" ng-class="{hightlight: totalPrice>0}">￥{{totalPrice}}</span>
+        <i class="divider"></i>
+        <span class="desc">另需配送费￥{{deliveryPrice}}元</span>
+      </div>
+      <!-- <div class="content-right" @click.stop.prevent="pay"> -->
+      <div class="content-right" ng-click="pay($event)">
+        <div class="pay" ng-class="{checkout: isCheckout}">
+          {{payDesc}}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="ball-container">
+      <div v-for="ball in balls">
+        <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
+          <div class="ball" v-show="ball.show">
+            <div class="inner inner-hook"></div>
+          </div>
+        </transition>
+      </div>
+    </div> -->
+    <!-- <transition name="fold"> -->
+      <div class="shopcart-list fold" ng-if="listShow">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty" ng-click="emptyCart()">清空</span>
+        </div>
+        <div class="list-content" id="listContent">
+          <ul>
+            <li class="food border-1px" ng-repeat="food in selectFoods">
+              <span class="name">{{food.name}}</span>
+              <span class="price">￥{{food.price * food.count}}</span>
+              <span class="cartcontrol-wrapper">          
+                <!-- <cartcontrol food="food" @add="drop"></cartcontrol> -->
+                <app-cartcontrol food="food"></app-cartcontrol>
+             </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <!-- </transition> -->
+  </div>
+  <!-- <transition name="fade"> -->
+    <div class="list-mask fade" ng-if="listShow" ng-click="toggleList()">
+    </div>
+  <!-- </transition> -->
+</div>

@@ -2,8 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" id="menuWrapper">
       <ul>
-        <!-- <li class="menu-item" v-for="(item, index) in goods" :class="{'current':currentIndex===index}" @click="selectMenu(index, $event)"> -->
-        <li class="menu-item" ng-repeat="item in goods" ng-class="{current:currentIndex===index}" ng-click="selectMenu(index, $event)">
+        <li class="menu-item" ng-repeat="item in goods" ng-class="{current:currentIndex===$index}" ng-click="selectMenu($index, $event)">
           <span class="text border-1px">
 		      <i class="icon {{classMap[item.type]}}" ng-show="item.type>=0" ng-class="classMap[item.type]"></i>
           {{item.name}}
@@ -11,9 +10,8 @@
         </li>
       </ul>
     </div>
-    <!-- <div class="foods-wrapper" ref="foodsWrapper"> -->
     <div class="foods-wrapper" id="foodsWrapper">
-      <ul>
+      <ul>     
         <li class="food-list food-list-hook" ng-repeat="item in goods">
           <h1 class="title">{{item.name}}</h1>
           <ul>
@@ -27,9 +25,10 @@
                 </p>
                 <p class="price"><span class="new">￥{{food.price}}</span><span ng-show="food.oldPrice" class="old">￥{{food.oldPrice}}</span></p>
               </div>
-              <!-- <div class="cartcontrol-wrapper">
-                <cartcontrol :food="food" @add="addFood"></cartcontrol>
-              </div> -->
+              <div class="cartcontrol-wrapper">
+                <!-- <cartcontrol food="food" @add="addFood"></cartcontrol> -->
+                <app-cartcontrol food="food"></app-cartcontrol>
+              </div>
             </li>
           </ul>
         </li>
@@ -38,4 +37,5 @@
   </div><!-- 
   <food ref="food" :food="selectedFood" @add="addFood"></food>
   <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :select-foods="selectFoods()"></shopcart> -->
+  <app-shopcart ref="shopcart" delivery-price="seller.deliveryPrice" min-price="seller.minPrice" select-foods="selectFoods"></app-shopcart>
 </div>
