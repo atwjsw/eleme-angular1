@@ -34,8 +34,9 @@
         </li>
       </ul>
     </div>
-  </div><!-- 
-  <food ref="food" :food="selectedFood" @add="addFood"></food>
-  <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :select-foods="selectFoods()"></shopcart> -->
+  </div>
+  <!-- <food ref="food" :food="selectedFood" @add="addFood"></food> -->
+  <app-food food="selectedFood" ng-if="foodShow" hide="hideFood()"></app-food>
+ <!--  <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :select-foods="selectFoods()"></shopcart> -->
   <app-shopcart ref="shopcart" delivery-price="seller.deliveryPrice" min-price="seller.minPrice" select-foods="selectFoods"></app-shopcart>
 </div>

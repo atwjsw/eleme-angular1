@@ -12,7 +12,8 @@ angular.module('elemeApp').directive('appCartcontrol', [function() {
       scope.addCart = function(event) {      
         if (!event._constructed) {
             return;
-        }
+        }        
+        event.stopPropagation();
         if (!scope.food.count) {
           scope.food.count = 1;
         } else {
@@ -23,6 +24,7 @@ angular.module('elemeApp').directive('appCartcontrol', [function() {
       if (!event._constructed) {
         return;
       }
+      event.stopPropagation();
       if (scope.food.count) {
         scope.food.count--;
       }

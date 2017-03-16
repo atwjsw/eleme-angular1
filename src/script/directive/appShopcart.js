@@ -56,6 +56,8 @@ angular.module('elemeApp').directive('appShopcart', ['$document', function($docu
       var _initScroll = function() {
         if (scope.listShow) {
           $document.ready(function() {
+          // element.ready( function() {
+            // console.log('document ready');
             if (!scope.foodListScroll) {
               scope.foodListScroll = new BScroll(listContent, {
                 click: true
@@ -66,6 +68,11 @@ angular.module('elemeApp').directive('appShopcart', ['$document', function($docu
           });
         }
       };
+
+      scope.$watch('listShow', function() {
+        // console.log('initScroll');
+        _initScroll();
+      });
     }
   };
 }]);

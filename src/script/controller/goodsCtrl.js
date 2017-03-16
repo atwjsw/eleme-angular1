@@ -13,8 +13,8 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
   	$http.get('data/data.json').then(function(response) {  	
     	$scope.goods = response.data.goods;  
     	$document.ready(function() {
-		_initScroll();
-		_calculateHeight();
+		  _initScroll();
+		  _calculateHeight();
 	});
     });	
 
@@ -53,7 +53,7 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
       if (!event._constructed) {
         return;
       }
-      console.log(index);
+      // console.log(index);
       var foodList = foodsWrapper.getElementsByClassName('food-list-hook');
       // console.log(foodList);
       var el = foodList[index];
@@ -61,7 +61,7 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
       $scope.currentIndex = index;
     };  
 
-    $scope.$watch('goods', function (goods) {
+  $scope.$watch('goods', function (goods) {
     	$scope.selectFoods = [];
      	goods.forEach( function(good) {
         	good.foods.forEach( function (food) {
@@ -70,8 +70,24 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
             	}
           	});
         });
-        console.log($scope.selectFoods);
-    }, true);     
+        // console.log($scope.selectFoods);
+  }, true);    
+
+  $scope.selectFood = function (food, event) {
+      if (!event._constructed) {
+        return;
+      }
+      console.log('selectFood' + food.name);
+      $scope.selectedFood = food;
+      $scope.foodShow = true;
+      // this.$refs.food.show()
+    } 
+
+    $scope.hideFood = function () {  
+      console.log('hideFood');   
+      $scope.foodShow = false;
+      // this.$refs.food.show()
+    }
    
 
     var _calculateCurrentIndex = function () {

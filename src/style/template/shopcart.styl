@@ -116,15 +116,11 @@
 			max-height: 240px   
 			transform: translate3d(0, -100%, 0)	
 			&.fold
-				&.ng-enter
-					transition: all .5s
-					transform: translate3d(0, 0, 0)
-				&.ng-enter-active
+				transition: all .5s linear
+				&.ng-show					
 					transform: translate3d(0, -100%, 0)
-				&.ng-leave
-					transition: all .5s
-				&.ng-leave-active
-					transform: translate3d(0, 100%, 0)						
+				&.ng-hide
+					transform: translate3d(0, 0, 0)											
 			.list-header
 				height: 40px
 				line-height: 40px			
