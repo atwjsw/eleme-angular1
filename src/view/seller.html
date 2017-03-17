@@ -1,1 +1,60 @@
-sellers
+<div class="seller" id="seller">
+  <div class="seller-content">
+    <div class="overview">
+      <div class="overview-top border-1px">
+        <h1 class="title">{{seller.name}}</h1>
+        <div class="desc">
+          <app-star size="36" score="seller.score"></app-star>
+          <span class="text">({{seller.ratingCount}})</span>
+          <span class="text">月售{{seller.sellCount}}单</span>
+        </div>
+        <div class="favorite" ng-click="toggleFavorite($event)">
+          <div class="icon-favorite" ng-class="{on: favorite}"></div>
+          <div class="text">{{favoriteText}}</div>
+        </div>
+      </div>
+      <div class="remark">
+        <div class="block">
+          <h2 class="item-name">起送价</h2>
+          <div class="item-info"><span class="value">{{seller.minPrice}}</span><span class="unit">元</span></div>
+        </div>
+        <div class="block">
+          <h2 class="item-name">商家配送</h2>
+          <div class="item-info"><span class="value">{{seller.deliveryPrice}}</span><span class="unit">元</span></div>
+        </div>
+        <div class="block">
+          <h2 class="item-name">平均配送时间</h2>
+          <div class="item-info"><span class="value">{{seller.deliveryTime}}</span><span class="unit">分钟</span></div>
+        </div>
+      </div>
+    </div>
+    <app-split></app-split>
+    <div class="bulletin">
+      <h2 class="title">公告与活动</h2>
+      <p class="text border-1px">{{seller.bulletin}}</p>
+      <ul class="seller-supports">
+        <li class="support-item border-1px" ng-repeat="item in seller.supports">
+          <i class="icon" ng-class="classMap[item.type]"></i><span class="support-text">{{item.description}}{{item.type}}</span>
+        </li>
+      </ul>
+    </div>
+    <split></split>
+    <div class="pics">
+      <h1 class="title">商家实景</h1>
+      <div class="pic-wrapper" id="picWrapper">
+        <ul class="pic-list" id="picList">
+          <li class="pic-item" ng-repeat="pic in seller.pics">
+            <img ng-src="{{pic}}">
+          </li>
+        </ul>
+      </div>
+    </div>
+    <split></split>
+    <div class="info">
+      <h1 class="title">商家信息</h1>
+      <ul>
+        <li class="info-item" ng-repeat="item in seller.infos">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

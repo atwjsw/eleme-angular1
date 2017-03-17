@@ -20,6 +20,10 @@ angular.module('elemeApp').directive('appShopcart', ['$document', function($docu
         });
         scope.isCheckout = scope.totalPrice >= scope.minPrice;
         scope.payDesc = payDesc();
+        if (scope.totalCount <= 0) {
+          scope.listShow = false;
+        }
+        _initScroll();
       }, true);
 
       var payDesc = function() {
@@ -34,8 +38,15 @@ angular.module('elemeApp').directive('appShopcart', ['$document', function($docu
 
       scope.listShow = false;
       scope.toggleList = function() {
-        scope.listShow = !scope.listShow;
-        _initScroll();
+        if (scope.listShow) {
+          scope.listShow = false;
+        } else {
+          if (scope.totalCount > 0) {
+            scope.listShow = true;
+            // _initScroll();
+          }
+        }
+        // scope.listShow = !scope.listShow;
       };
 
       scope.emptyCart = function() {
@@ -54,25 +65,61 @@ angular.module('elemeApp').directive('appShopcart', ['$document', function($docu
       };
 
       var _initScroll = function() {
-        if (scope.listShow) {
-          $document.ready(function() {
-          // element.ready( function() {
-            // console.log('document ready');
-            if (!scope.foodListScroll) {
-              scope.foodListScroll = new BScroll(listContent, {
-                click: true
-              });
-            } else {
-              scope.foodListScroll.refresh();
-            }
-          });
+        // if (scope.listShow) {
+        $document.ready(function() {
+          if (!scope.foodListScroll) {
+            scope.foodListScroll = new BScroll(listContent, {
+              click: true
+            });
+          } else {
+            scope.foodListScroll.refresh();
+          }
+        });
+        // }
+      };
+
+      scope.$watch('listShow', function(newVal) {
+        // console.log('initScroll');
+        if (newVal) {
+          _initScroll();
+        }
+      });
+
+      scope.$on('addCart', function(event, target) {
+        // console.log('drop', target); 
+        scope.drop(target);
+      });
+
+      scope.balls = [{
+        show: false
+      }, {
+        show: false
+      }, {
+        show: false
+      }, {
+        show: false
+      }, {
+        show: false
+      }];
+
+      scope.dropBall = [];
+
+      scope.drop = function(el) {
+        console.log('el ' + el);
+        for (var i = 0; i < scope.balls.length; i++) {
+          var ball = scope.balls[i];
+          if (!ball.show) {
+            ball.show = true;
+            ball.el = el;
+            scope.dropBall.push(ball);
+            console.log(scope.dropBall);
+            return;
+          }
         }
       };
 
-      scope.$watch('listShow', function() {
-        // console.log('initScroll');
-        _initScroll();
-      });
+      //TBD ball dropping animation
+
     }
   };
 }]);

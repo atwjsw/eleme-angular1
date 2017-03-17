@@ -13,7 +13,7 @@
     <div class="foods-wrapper" id="foodsWrapper">
       <ul>     
         <li class="food-list food-list-hook" ng-repeat="item in goods">
-          <h1 class="title">{{item.name}}</h1>
+          <h1 class="title">{{item.name}}{{foodShow}}</h1>
           <ul>
             <li class="food-item border-1px" ng-repeat="food in item.foods" ng-click="selectFood(food, $event)">
               <img class="icon" ng-src="{{food.icon}}" alt="food.name">
@@ -36,7 +36,7 @@
     </div>
   </div>
   <!-- <food ref="food" :food="selectedFood" @add="addFood"></food> -->
-  <app-food food="selectedFood" ng-if="foodShow" hide="hideFood()"></app-food>
+  <app-food food="selectedFood" hide="hideFood()" food-show="foodShow"></app-food>
  <!--  <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :select-foods="selectFoods()"></shopcart> -->
   <app-shopcart ref="shopcart" delivery-price="seller.deliveryPrice" min-price="seller.minPrice" select-foods="selectFoods"></app-shopcart>
 </div>

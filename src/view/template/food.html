@@ -1,6 +1,6 @@
 <!-- <transition name="slide">  -->
   <!-- <div ng-show="showFlag" class="food" ref="food"> -->
-  <div class="food" id="food">
+  <div class="food slide" ng-show="foodShow" id="food">
     <div class="food-content">
       <div class="image-header">
         <img ng-src="{{food.image}}">
@@ -8,7 +8,7 @@
       </div>
       <div class="food-info">
         <div class="content">
-          <h1 class="name">{{food.name}}</h1>
+          <h1 class="name">{{food.name}}{{food.count}}</h1>
           <div class="detail">
             <span class="sell-count">月售{{food.sellCount}}份</span><span class="rating">好评率{{food.rating}}%</span>
           </div>
@@ -17,14 +17,14 @@
             <span class="old" ng-show="food.oldPrice">￥{{food.oldPrice}}元</span>
           </div>
         </div>
-        <transition name="fade">
-          <div class="buy" ng-show="!food.count || food.count===0" @click="addFirst">
+        <!-- <transition name="fade"> -->
+          <div class="buy fade" ng-show="!food.count || food.count===0" ng-click="addFirst($event)">
             加入购物车
           </div>
-        </transition>
-        <span class="cartcontrol-wrapper" ng-show="food.count>0">          
+        <!-- </transition> -->
+        <span class="cartcontrol-wrapper" ng-show="food.count>0">                  
           <!-- <cartcontrol :food="food" @add="addFood"></cartcontrol> -->
-          <cartcontrol food="food"></cartcontrol>
+          <app-cartcontrol food="food"></app-cartcontrol>
         </span>
       </div>
       <app-split ng-show="food.info"></app-split>
@@ -38,25 +38,28 @@
             商品评价<!-- {{positiveCount}} -->
         </h1>
         <div class="rating-select-wrapper">
-          <ratingselect :ratings="food.ratings" :desc="desc" :only-content="onlyContent" :select-type="selectType" @toggle="toggleContent" @select="setRateType"></ratingselect>
+          <!-- <ratingselect :ratings="food.ratings" :desc="desc" :only-content="onlyContent" :select-type="selectType" @toggle="toggleContent" @select="setRateType"></ratingselect> -->
+          <app-ratingselect ratings="food.ratings" desc="desc" only-content="onlyContent" select-type="selectType"></app-ratingselect>
         </div>
       </div>
       <div class="rating-wrapper">
-      <div class="no-rating" v-show="!food.ratings || !food.ratings.length">
+      <div class="no-rating" ng-show="!food.ratings || !food.ratings.length">
             暂无评价
           </div>
-        <ul v-show="food.ratings && food.ratings.length">
-          <li v-show="needShow(rating)" class="rating-item" v-for="rating in food.ratings">
+        <ul ng-show="food.ratings && food.ratings.length">
+          <!-- <li ng-show="needShow(rating)" class="rating-item" ng-repeat="rating in food.ratings"> -->          
+          <!-- <li class="rating-item" ng-repeat="rating in food.ratings | filterNeedShow: {selectType: 0, onlyContent: true}"> -->
+          <li class="rating-item" ng-repeat="rating in food.ratings | filterNeedShow: {selectType: selectType, onlyContent: onlyContent}">
             <div class="rating-info">
               <!-- <span class="time">{{rating.rateTime | formatDate}}</span>    -->
-              <span class="time">{{rating.rateTime}}</span>          
+              <span class="time">{{rating.rateTime | date:'yyyy-MM-dd hh:mm'}}</span>          
               <div class="user">
-                <span class="name">{{rating.username}}</span><img :src="rating.avatar" class="avatar">
+                <span class="name">{{rating.username}}</span><img ng-src="{{rating.avatar}}" class="avatar">
               </div>
             </div>
             <p class="text">
-              <i :class="{'icon-thumb_down': rating.rateType===1,'icon-thumb_up': rating.rateType===0}"></i>{{rating.text}}
-            </p>
+              <i ng-class="{'icon-thumb_down': rating.rateType===1, 'icon-thumb_up': rating.rateType===0}"></i>{{rating.text}}
+            </p>           
           </li>
         </ul>
       </div>

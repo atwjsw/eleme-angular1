@@ -7,12 +7,13 @@
   z-index: 30
   width: 100%
   background: #fff
-  overflow: hidden
-  transform: translate3d(0, 0, 0) 
-  &.slide-enter-active, &.slide-leave-active
-    transition: all .2s linear    
-  &.slide-enter, &.slide-leave-active   
-    transform: translate3d(100%, 0, 0)      
+  overflow: hidden 
+  &.slide
+    transition: all .2s linear
+    &.ng-show         
+      transform: translate3d(0, 0, 0)
+    &.ng-hide
+      transform: translate3d(100%, 0, 0)
   .image-header
     // Tips: 利用CSS3中设置width:100%, Padding-top: 100%时，height自动设为与width相等的特性来实现图片自适应屏幕宽高    
     position: relative
@@ -79,11 +80,12 @@
       color: #fff
       background: rgb(0, 160, 220)
       border-radius: 12px
-      opacity: 1
-      &.fade-enter-active, &.fade-leave-active
-        transition: all .2s       
-      &.fade-enter, &.fade-leave-active
-        opacity: 0
+      &.fade
+        transition: all .2s
+        &.ng-show          
+          opacity: 1
+        &.ng-hide
+          opacity: 0
   .hr
     height: 16px
     background: #f3f5f7

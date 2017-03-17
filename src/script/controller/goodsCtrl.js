@@ -30,14 +30,12 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
       $scope.foodsScroll.on('scroll', function (pos) {
         	$scope.scrollY = Math.abs(Math.round(pos.y));
         	$scope.currentIndex = _calculateCurrentIndex();
-        	// console.log($scope.currentIndex); 
         	// 强制执行脏值检查
         	$scope.$apply();      	
       });
     };
 
-	var _calculateHeight = function () {
-		console.log('_calculateHeight');
+	var _calculateHeight = function () {		
       var foodList = foodsWrapper.getElementsByClassName('food-list-hook')
       var height = 0;
       $scope.listHeight.push(height);
@@ -52,10 +50,8 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
 	$scope.selectMenu = function (index, event) {
       if (!event._constructed) {
         return;
-      }
-      // console.log(index);
-      var foodList = foodsWrapper.getElementsByClassName('food-list-hook');
-      // console.log(foodList);
+      }      
+      var foodList = foodsWrapper.getElementsByClassName('food-list-hook');     
       var el = foodList[index];
       $scope.foodsScroll.scrollToElement(el, 300);
       $scope.currentIndex = index;
@@ -70,28 +66,23 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
             	}
           	});
         });
-        // console.log($scope.selectFoods);
   }, true);    
 
   $scope.selectFood = function (food, event) {
       if (!event._constructed) {
         return;
-      }
-      console.log('selectFood' + food.name);
+      }      
       $scope.selectedFood = food;
       $scope.foodShow = true;
+     
       // this.$refs.food.show()
-    } 
+    };
 
     $scope.hideFood = function () {  
-      console.log('hideFood');   
-      $scope.foodShow = false;
-      // this.$refs.food.show()
-    }
-   
+      $scope.foodShow = false;     
+    };   
 
     var _calculateCurrentIndex = function () {
-    	// console.log('currentIndex');
       	for (var i = 0; i < $scope.listHeight.length; i++) {
         	var height1 = $scope.listHeight[i];
         	var height2 = $scope.listHeight[i + 1];
@@ -101,4 +92,14 @@ angular.module('elemeApp').controller('goodsCtrl', ['$scope', '$http', '$documen
       	}
         return 0;
     };
+
+    $scope.$on('add', function(event, target) {
+      console.log('add', target); 
+      // _drop(target); 
+       
+      $scope.$broadcast('addCart', target);   
+  });
+
+   
+
 }]);

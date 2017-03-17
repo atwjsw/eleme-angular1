@@ -8,7 +8,7 @@
       </div>
       <div class="support-count" ng-if="seller.supports" ng-click="showDetail()">{{seller.supports.length}}个<i class="icon-keyboard_arrow_right"></i></div>
     </div>
-    <div class="bulletin-wrapper" @click="showDetail">
+    <div class="bulletin-wrapper" ng-click="showDetail()">
       <span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>

@@ -6,29 +6,38 @@ angular.module('elemeApp').directive('appCartcontrol', [function() {
     replace: true,
     templateUrl: 'view/template/cartcontrol.html',
     scope: {
-      food: '='
+      food: '=',
+      add: '&',
+      target: '='
     },
     link: function(scope) {
-      scope.addCart = function(event) {      
+      scope.addCart = function(event) {
         if (!event._constructed) {
-            return;
-        }        
+          return;
+        }
         event.stopPropagation();
         if (!scope.food.count) {
           scope.food.count = 1;
         } else {
           scope.food.count++;
         }
+        // scope.target = event.target;
+        // console.log(event.target);
+        // scope.add();
+        scope.$emit('add', event.target);
       };
-      scope.decreaseCart = function (event) {
-      if (!event._constructed) {
-        return;
-      }
-      event.stopPropagation();
-      if (scope.food.count) {
-        scope.food.count--;
-      }
-    };
+
+      scope.decreaseCart = function(event) {
+        if (!event._constructed) {
+          return;
+        }
+        event.stopPropagation();
+        if (scope.food.count) {
+          scope.food.count--;
+        }
+
+      };
     }
   };
 }]);
+

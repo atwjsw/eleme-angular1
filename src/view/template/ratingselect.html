@@ -1,0 +1,18 @@
+<div class="rating-select">
+  <div class="rating-type border-1px">
+    <div class="label all" ng-click="select(2, $event)" ng-class="{active: selectType===2}">
+      {{desc.all}}<span class="count">{{ratings.length}}</span>
+    </div>
+    <div class="label positive" ng-click="select(0, $event)" ng-class="{active: selectType===0}">
+      {{desc.positive}}<span class="count">{{positives.length}}</span>
+    </div>
+    <div class="label negative" ng-click="select(1, $event)" ng-class="{active: selectType===1}">
+      {{desc.negative}}<span class="count">{{negatives.length}}</span>
+    </div>
+  </div>
+  <div class="switch">
+    <i class="icon-check_circle" ng-class="{on:onlyContent}" ng-click="toggleContent($event)"></i>
+    <span class="text">只看有内容的评价</span>
+  </div>
+</div>
+
