@@ -1,1 +1,55 @@
-ratings1
+<div class="seller-ratings" id="ratings">
+    <div class="ratings-content">
+      <div class="overview">
+        <div class="overview-left">
+          <h1 class="score">{{seller.score}}</h1>
+          <div class="title">综合评分</div>
+          <div class="rank">高于周边商家{{seller.rankRate}}%</div>
+        </div>
+        <div class="overflow-right">
+          <div class="score-wrapper">
+            <span class="title">服务态度</span>
+            <app-star score="seller.serviceScore" size="36"></app-star>
+            <span class="score">{{seller.serviceScore}}</span>
+          </div>
+          <div class="score-wrapper">
+            <span class="title">商品评分</span>
+            <app-star score="seller.foodScore" size="36"></app-star>
+            <span class="score">{{seller.foodScore}}</span>
+          </div>
+          <div class="delivery-wrapper">
+            <span class="title">送达时间</span>
+            <span class="delivery-time">{{seller.deliveryTime}}分钟</span>
+          </div>
+        </div>
+      </div>
+      <split></split>
+      <div class="rating-select-wrapper">
+        <app-ratingselect desc="desc" ratings="ratings" only-content="onlyContent" select-type="selectType" @toggle="toggleContent" @select="setRateType"></app-ratingselect>
+      </div>
+      <div class="rating-wrapper">
+        <ul>
+          <!-- <li class="rating-item border-1px" ng-repeat="rating in ratings" v-show="needShow(rating)"> -->
+          <li class="rating-item border-1px" ng-repeat="rating in ratings | filterNeedShow: {selectType: selectType, onlyContent: onlyContent}">          
+            <div class="avator">
+              <img ng-src="{{rating.avatar}}">
+            </div>
+            <div class="content">
+              <!-- <p class="seller-rator-info"><span class="name">{{rating.username}}</span><span class="time">{{rating.rateTime | formatDate}}</span></p> -->
+              <p class="seller-rator-info"><span class="name">{{rating.username}}</span><span class="time">{{rating.rateTime | date:'yyyy-MM-dd hh:mm'}}</span></p>
+              <p class="star-wrapper">
+                <app-star size='24' score="rating.score"></app-star>
+                <span class="delivery" ng-show="rating.deliveryTime">{{rating.deliveryTime}}分钟送达</span></p>
+              <p class="text">
+                {{rating.text}}
+              </p>
+              <p class="recommend" ng-show="rating.recommend && rating.recommend.length">
+                <i class="icon" ng-class="{'icon-thumb_up': rating.rateType == 0, 'icon-thumb_down': rating.rateType == 1}"></i>
+                <span class='item' ng-repeat="item in rating.recommend">{{item}}</span>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

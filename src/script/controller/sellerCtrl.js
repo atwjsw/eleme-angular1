@@ -7,11 +7,11 @@ angular.module('elemeApp').controller('sellerCtrl', ['$scope', '$http', '$docume
   var _initScroll = function() {
     $document.ready(function() {
       if (!$scope.sellerScroll) {
-        $scope.scroll = new BScroll(seller, {
+        $scope.sellerScroll = new BScroll(seller, {
           click: true
         });
       } else {
-        $scope.scroll.refresh();
+        $scope.sellerScroll.refresh();
       }
     });
   };
@@ -31,10 +31,10 @@ angular.module('elemeApp').controller('sellerCtrl', ['$scope', '$http', '$docume
         } else {
           $scope.picScroll.refresh();
         }
-      })
+      });
 
     }
-  }
+  };
 
 
   $scope.$watch('seller', function() {

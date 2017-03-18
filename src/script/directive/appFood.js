@@ -20,20 +20,20 @@ angular.module('elemeApp').directive('appFood', [function() {
     };    
 
       scope.$watch('selectType', function() {
-        console.log('selectType');
+        // console.log('selectType');
         // element.ready(function() {
         _initialScroll();
         // });
       });
 
       scope.$watch('onlyContent', function() {
-        console.log('onlyContent');
+        // console.log('onlyContent');
         _initialScroll();
 
       });
 
       scope.$watch('foodShow', function(foodShow) {
-        console.log('foodShow');
+        // console.log('foodShow');
         // element.ready(function() {
         if(foodShow) {
           _initialScroll();
